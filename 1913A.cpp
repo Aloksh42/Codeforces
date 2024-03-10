@@ -7,31 +7,20 @@ using namespace std;
 
 void solve() {
 	
-	int n, k;
-	cin >> n >> k;
+	string s;
+	cin >> s;
 
-	vector<pair<int, int>> v(n);
-	for(int i=0; i<n; i++){
-		int t;
-		cin >> t;
+	int n = s.size();
+	for(int i=1; i<n; i++){
+		string a = s.substr(0, i);
+		string b = s.substr(i, n-i);
 
-		t %= k;
-
-		if(t == 0){
-			t += k;
+		if(a[0]!='0' && b[0]!='0' && stoi(a)<stoi(b) && a+b == s){
+			cout << a << " " << b << endl;
+			return;
 		}
-
-		v[i] = {-t, i};
 	}
-
-	sort(v.begin(), v.end());
-	for(auto [x,y]: v){
-		cout << y+1 << " ";
-	}
-
-	cout << endl;
-	return;
-
+	cout << -1 << endl;
 }
 
 

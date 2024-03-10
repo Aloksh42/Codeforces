@@ -2,48 +2,67 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	string s;
+	cin >> s;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	int n = s.size();
+
+	if(n == 1){
+		cout << "1" << endl;
+		return;
+	}
+
+	int c0 = 0;
+	int c1 = 0;
+	for(int i=0; i<n; i++){
+		if(s[i] == '0'){
+			c0++;
+		}
+		else
+			c1++;
+	}
+
+	for(int i=0; i<n; i++){
+		if(s[i] == '1'){
+			if(c0 > 0){
+				c0--;
+			}
+			else{
+				cout << n - i << endl;
+				return;
+			}
+		}
+		else {
+			if(c1 > 0){
+				c1--;
+			}
+			else {
+				cout << n-i << endl;
+				return;
+			}
+		}
+	}
+
+	cout << c1 << endl;
+	return;
+}
 
 
-	int t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		string s;
-        cin >> s;
-        int c0 = 0, c1 = 0;
-        for (int i = 0; i < s.size(); ++i) {
-            if (s[i] == '0') {
-                c0++;
-            } else {
-                c1++;
-            }
-        }
-        int cnt = 0;
-        for (int i = 0; i < s.size(); ++i) {
-            if (s[i] == '0') {
-                if (c1 == 0) {
-                    break;
-                }
-                c1--;
-                cnt++;
-            } else {
-                if (c0 == 0) {
-                    break;
-                }
-                c0--;
-                cnt++;
-            }
-        }
-        cout << s.size() - cnt << endl;		
+		solve();		
 	}
-	
+
 	return 0;
 }

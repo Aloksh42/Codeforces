@@ -2,46 +2,58 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n, k, q;
+	cin >> n >> k >> q;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	vector<int> a(n);
+	for(int i=0; i<n; i++){
+		cin >> a[i];
+	}
+
+	int res = 0;
+	int count = 0;
+	int x = 0, y=0;
+
+	for(int i=0; i<n; i++){
+		if(a[i] <= q){
+			count++;
+			y++;
+		}
+		else {
+			if(y-x >= k){
+				res += ((count - k + 1)*(count - k + 2))/2;
+			}
+			x = 0;
+			y = 0;
+			count = 0;
+		}
+	}
 
 
-	ll t;
+	if(y-x >= k){
+		res += ((count - k + 1)*(count - k + 2))/2;
+	}
+
+	cout << res << endl;
+
+}
+
+
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		
-		ll n, k, q;
-		cin >> n >> k >> q;
-
-		vector<ll> v(n);
-		for(auto &x: v){
-			cin >> x;
-		}
-
-		ll count = 0;
-		ll ans = 0;
-
-		for(ll i=0; i<n; i++){
-			if(v[i] <= q)
-				count++;
-			else
-				count = 0;
-
-			if(count >= k){
-				ans += count - k + 1;
-			}
-		}
-
-		cout << ans << endl;
+		solve();		
 	}
-
 
 	return 0;
 }

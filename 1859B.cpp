@@ -2,47 +2,56 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n;
+	cin >> n;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	vector<int> v;
+	int ans = 0;
+	int mi = 1e18;
+
+	for(int i=0; i<n; i++){
+		int x;
+		cin >> x;
+
+		vector<int> v1;
+		for(int i=0; i<x; i++){
+			int y;
+			cin >> y;
+
+			v1.push_back(y);
+		}
+
+		sort(v1.begin(), v1.end());
+		mi = min(mi, v1[0]);
+		v.push_back(v1[1]);
+	}
+
+	sort(v.begin(), v.end());
+	ans += mi;
+	for(int i=1; i<v.size(); i++){
+		ans += v[i];
+	}
+
+	cout << ans << endl;
+
+}
 
 
-	int t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		
-		int n;
-		cin >> n;
-		ll ans = 0;
-
-		int f = INT_MAX;
-		int s = INT_MAX;
-
-		for(int i=1; i<=n; i++){
-			int m;
-			cin >> m;
-
-			vector<int>v(m+1);
-			for(int j=1; j<=m; j++){
-				cin >> v[j];
-			}
-
-			sort(v.begin(), v.end());
-			f = min(f, v[1]);
-
-			s = min(s, v[2]);
-			ans += v[2];
-		}
-
-		cout << ans - s + f << endl;			
+		solve();		
 	}
-
 
 	return 0;
 }

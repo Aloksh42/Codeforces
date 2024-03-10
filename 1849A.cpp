@@ -7,31 +7,14 @@ using namespace std;
 
 void solve() {
 	
-	int n, k;
-	cin >> n >> k;
+	int b, c, h;
+	cin >> b >> c >> h;
 
-	vector<pair<int, int>> v(n);
-	for(int i=0; i<n; i++){
-		int t;
-		cin >> t;
+	int x = (b-1)*2;
+	int y = (c+h)*2;
 
-		t %= k;
-
-		if(t == 0){
-			t += k;
-		}
-
-		v[i] = {-t, i};
-	}
-
-	sort(v.begin(), v.end());
-	for(auto [x,y]: v){
-		cout << y+1 << " ";
-	}
-
-	cout << endl;
+	cout << min(x, y)+1 << endl;
 	return;
-
 }
 
 

@@ -2,50 +2,56 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n, p;
+	cin >> n >> p;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	vector<pair<int, int>> v(n);
+
+	for(int i=0; i<n; i++){
+		int x;
+		cin >> x;
+		v[i].second = x;
+	}
+
+	for(int i=0; i<n; i++){
+		int y;
+		cin >> y;
+		v[i].first = y;
+	}
+
+	sort(v.begin(), v.end());
+
+	int req = n-1;
+	int res = p;
+
+	for(int i=0; i<n; i++){
+		if(v[i].first <= p){
+			int t = min(req, v[i].second);
+			req = req - t;
+			res += t * v[i].first;
+		}
+	}
+
+	cout << res + (req)*(p) << endl;
+	return;
+}
 
 
-	int t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		
-		int n, p;
-		cin >> n >> p;
-
-		vector<pair<int, int>> vec(n);
-
-		for(int i=0; i<n; i++){
-			cin >> vec[i].second;
-		}	
-
-		for(int i=0; i<n; i++){
-			cin >> vec[i].first;
-		}
-
-		sort(vec.begin(), vec.end());
-
-		int req = n - 1;
-		ll ans = p;
-
-		for(int i=0; i<n; i++){
-			if(vec[i].first <= p){
-				int t = min(req, vec[i].second);
-				req -= t;
-				ans += (ll)t * vec[i].first;
-			}
-		}
-
-		cout << ans + (ll)req * p << endl;
+		solve();		
 	}
-
 
 	return 0;
 }

@@ -2,48 +2,52 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n, k;
+	cin >> n >> k;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	vector<int> a(n);
+	for(int i=0;i<n; i++){
+		cin >> a[i];
+	}
+
+	int res = k;
+	for(int i=0; i<n; i++){
+		res = min(res, (k - a[i] % k) % k);
+	}
+
+	if(k == 4){
+		int evenNum = 0;
+		for(int i=0; i<n; i++){
+			if(a[i]%2 == 0){
+				evenNum++;
+			}
+		}
+		if(evenNum >= 2){
+			res = 0;
+		}
+		else if (evenNum == 1) res = min (res, 1ll);
+		else res = min (res, 2ll);
+	}
+	cout << res << endl;
+	return;
+}
 
 
-	int t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
-	while (t--) {
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        int ans = 1e9;
-
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            if (a[i] % k == 0) ans = 0;
-            ans = min(ans, k - a[i] % k);
-        }
-        if (k == 4) {
-            int f = 0;
-            for (int i = 0; i < n; i++) {
-                if (a[i] % 2 == 0) {
-                    f++;
-                }
-            }
-            if (f < 2) {
-                cout << min(2 - f, ans) << endl;
-                continue;
-            }
-            else {
-                cout << 0 << endl;
-                continue;
-            }
-        }
-        cout << ans << endl;
-    }
+	while(t--){
+		solve();		
+	}
 
 	return 0;
 }
