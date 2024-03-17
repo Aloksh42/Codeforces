@@ -10,19 +10,21 @@ void solve() {
 	int n;
 	cin >> n;
 
-	string s;
-	cin >> s;
-
-	set<char> str;
-	int ans = 0;
-
-	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+	if(n <= 10){
+		cout << n << endl;
+		return;
 	}
 
-	cout << ans + str.size() << endl;
-	return;
+	int cnt = 0;
+	int t = 0;
+
+	while(n/10 > 0){
+		n = n/10;
+		cnt++;
+		t = n*10;
+	}
+
+	cout << (9 * cnt + t/10) << endl;
 
 }
 

@@ -7,23 +7,15 @@ using namespace std;
 
 void solve() {
 	
-	int n;
-	cin >> n;
+	int n, a, b;
+	cin >> n >> a >> b;
 
-	string s;
-	cin >> s;
-
-	set<char> str;
-	int ans = 0;
-
-	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+	if((a + b + 2 <= n) || (a == b && b == n)){
+		cout << "Yes" << endl;
 	}
-
-	cout << ans + str.size() << endl;
+	else
+		cout << "No" << endl;
 	return;
-
 }
 
 

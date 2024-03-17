@@ -10,18 +10,22 @@ void solve() {
 	int n;
 	cin >> n;
 
-	string s;
-	cin >> s;
-
-	set<char> str;
-	int ans = 0;
+	int sum = 0;
 
 	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+		int x;
+		cin >> x;
+		sum += x;
 	}
 
-	cout << ans + str.size() << endl;
+	int res = sqrt(sum);
+	
+	if(res * res  == sum){
+		cout << "Yes" << endl;
+	}
+	else
+		cout << "No" << endl;
+
 	return;
 
 }

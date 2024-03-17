@@ -8,22 +8,23 @@ using namespace std;
 void solve() {
 	
 	int n;
-	cin >> n;
+	cin >> n; 
 
 	string s;
 	cin >> s;
 
-	set<char> str;
-	int ans = 0;
+	int res = 0;
 
-	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+	for(int i=0; i <n-2; i++){
+		if((s[i] == 'm' && s[i+1] == 'a' && s[i+2] == 'p') || (s[i] == 'p' && s[i+1] == 'i' && s[i+2] == 'e')){
+			res++;
+			i += 2;
+		}
 	}
 
-	cout << ans + str.size() << endl;
-	return;
+	cout << res << endl;
 
+	return;
 }
 
 

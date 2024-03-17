@@ -7,22 +7,20 @@ using namespace std;
 
 void solve() {
 	
-	int n;
-	cin >> n;
+	int a, b, n;
+	cin >> a >> b >> n;
 
-	string s;
-	cin >> s;
-
-	set<char> str;
-	int ans = 0;
-
+	vector<int> v(n);
 	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+		cin >> v[i];
 	}
 
-	cout << ans + str.size() << endl;
-	return;
+	int res = b;
+	for(int i=0; i<n; i++){
+		res += min(v[i], a-1);
+	}
+
+	cout << res << endl;
 
 }
 

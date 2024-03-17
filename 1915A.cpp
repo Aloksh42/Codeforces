@@ -7,22 +7,23 @@ using namespace std;
 
 void solve() {
 	
-	int n;
-	cin >> n;
+	int a, b, c;
+	cin >> a >> b >> c;
 
-	string s;
-	cin >> s;
-
-	set<char> str;
-	int ans = 0;
-
-	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+	if(a==b){
+		cout << c << endl;
+		return;
 	}
 
-	cout << ans + str.size() << endl;
-	return;
+	if(a==c){
+		cout << b << endl;
+		return;
+	}
+
+	if(b==c){
+		cout << a << endl;
+		return;
+	}
 
 }
 

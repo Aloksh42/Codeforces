@@ -10,20 +10,28 @@ void solve() {
 	int n;
 	cin >> n;
 
-	string s;
-	cin >> s;
-
-	set<char> str;
-	int ans = 0;
-
+	vector<int> a(n);
 	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+		cin >> a[i];
+		if(i&1){
+			a[i] = -a[i];
+		}
 	}
 
-	cout << ans + str.size() << endl;
-	return;
+	int sum = 0;
+	set<int>s{0};
 
+	for(int i=0; i<n; i++){
+		sum += a[i];
+		if(s.find(sum) != s.end()){
+			cout << "Yes" << endl;
+			return;
+		}
+		s.insert(sum);
+	}
+
+	cout << "No" << endl;
+	return;
 }
 
 

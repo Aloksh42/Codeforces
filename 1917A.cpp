@@ -10,20 +10,25 @@ void solve() {
 	int n;
 	cin >> n;
 
-	string s;
-	cin >> s;
+	int prod = 1;
 
-	set<char> str;
-	int ans = 0;
-
+	vector<int>a(n);
 	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+		cin >> a[i];
+		if(a[i] < 0){
+			prod *= -1;
+		}
+		else if(a[i] == 0)
+			prod = 0;
 	}
 
-	cout << ans + str.size() << endl;
-	return;
+	if(prod <= 0){
+		cout << 0 << endl;
+		return;
+	}
 
+	cout << 1 << endl;
+	cout << 1 << " " << 0 << endl;
 }
 
 

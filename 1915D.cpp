@@ -13,17 +13,24 @@ void solve() {
 	string s;
 	cin >> s;
 
-	set<char> str;
-	int ans = 0;
-
-	for(int i=0; i<n; i++){
-		ans += str.size();
-		str.insert(s[i]);
+	cout << s[0];
+	for(int i=1; i<n-1; i++){
+		if(s[i] == 'a' || s[i] == 'e'){
+			cout << s[i];
+		}
+		else {
+			if(s[i+1] == 'a' || s[i+1] == 'e'){
+				cout << "." << s[i];
+			}
+			else {
+				cout << s[i];
+			}
+		}
 	}
 
-	cout << ans + str.size() << endl;
+	cout << s.back();
+	cout << endl;
 	return;
-
 }
 
 
