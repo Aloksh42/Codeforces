@@ -11,26 +11,21 @@ void solve() {
 	cin >> s;
 
 	int n = s.size();
-
-	if(n == 1){
-		cout << "1" << endl;
-		return;
-	}
-
-	int c0 = 0;
-	int c1 = 0;
+	
+	int cnt0 = 0;
+	int cnt1 = 0;
 	for(int i=0; i<n; i++){
 		if(s[i] == '0'){
-			c0++;
+			cnt0++;
 		}
 		else
-			c1++;
+			cnt1++;
 	}
 
 	for(int i=0; i<n; i++){
 		if(s[i] == '1'){
-			if(c0 > 0){
-				c0--;
+			if(cnt0 > 0){
+				cnt0--;
 			}
 			else{
 				cout << n - i << endl;
@@ -38,8 +33,8 @@ void solve() {
 			}
 		}
 		else {
-			if(c1 > 0){
-				c1--;
+			if(cnt1 > 0){
+				cnt1--;
 			}
 			else {
 				cout << n-i << endl;
@@ -48,7 +43,7 @@ void solve() {
 		}
 	}
 
-	cout << c1 << endl;
+	cout << cnt1 << endl;
 	return;
 }
 

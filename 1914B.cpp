@@ -7,23 +7,26 @@ using namespace std;
 
 void solve() {
 	
-	int n;
-	string s;
+	int n, k;
+	cin >> n >> k;
 
-	cin >> n >> s;
+	vector<int> a;
 
-	set<char> str;
-	int res = 0;
+	for(int i=0; i<k; i++){
+		a.push_back(n-i);
+	}
 
-	for(int i=0; i<n; i++){
-		if(str.find(s[i]) == str.end()){
-			res += (n-i);
-			str.insert(s[i]);
-		}
-	}	
+	for(int i=1; i<=n-k; i++){
+		a.push_back(i);
+	}
 
-	cout << res << endl;
-	return;
+	reverse(a.begin(), a.end());
+	for(auto x: a){
+		cout << x << " ";
+	}
+
+	cout << endl;
+
 }
 
 

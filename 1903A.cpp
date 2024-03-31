@@ -2,34 +2,39 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n, k;
+	cin >> n >> k;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	vector<int> a(n);
+	for(int i=0; i<n; i++){
+		cin >> a[i];
+	}
+
+	bool ok = is_sorted(a.begin(), a.end());
+
+	if(k > 1 || ok){
+		cout << "Yes" << endl;
+	}
+	else
+		cout << "No" << endl;
+	return;
+}
 
 
-	int t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		
-		int n, k;
-		cin >> n >> k;
-
-		int arr[n];
-		for(int i=0; i<n; i++){
-			cin >> arr[i];
-		}
-
-		if(is_sorted(arr, arr+n) || k > 1){
-			cout << "Yes" << endl;
-		}
-		else
-			cout << "No" << endl;
+		solve();		
 	}
 
 	return 0;

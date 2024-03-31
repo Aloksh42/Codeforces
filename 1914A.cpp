@@ -9,20 +9,24 @@ void solve() {
 	
 	int n;
 	string s;
-
 	cin >> n >> s;
 
-	set<char> str;
-	int res = 0;
+	map<char, int> m;
+	for(int i=0; i<n; i++){
+		m[s[i]]++;
+	}
+
+	int count = 0;
 
 	for(int i=0; i<n; i++){
-		if(str.find(s[i]) == str.end()){
-			res += (n-i);
-			str.insert(s[i]);
+		int x = s[i];
+		if(m[s[i]] >= x - 64){
+			count++;
+			m[s[i]] = 0;
 		}
-	}	
+	}
 
-	cout << res << endl;
+	cout << count << endl;
 	return;
 }
 

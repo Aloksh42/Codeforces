@@ -10,25 +10,30 @@ void solve() {
 	int n;
 	cin >> n;
 
-	int prod = 1;
+	vector<int> a(n);
 
-	vector<int>a(n);
+	int zero = 0;
+	int neg = 0;
+
 	for(int i=0; i<n; i++){
 		cin >> a[i];
-		if(a[i] < 0){
-			prod *= -1;
+		if(a[i] == 0){
+			zero++;
 		}
-		else if(a[i] == 0)
-			prod = 0;
+		else if(a[i] < 0){
+			neg++;
+		}
 	}
 
-	if(prod <= 0){
+	if(neg % 2 || zero){
 		cout << 0 << endl;
 		return;
 	}
 
 	cout << 1 << endl;
 	cout << 1 << " " << 0 << endl;
+	return;
+
 }
 
 

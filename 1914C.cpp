@@ -2,46 +2,48 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n, k;
+	cin >> n >> k;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	vector<int>a(n), b(n);
+
+	for(int i=0; i<n; i++){
+		cin >> a[i];
+	}
+
+	for(int i=0; i<n; i++){
+		cin >> b[i];
+	}
+
+	int res = 0, maxElement = 0 , sum = 0;
+
+	for(int i=0; i<min(n,k); i++){
+		maxElement = max(maxElement, b[i]);
+		sum += a[i];
+		res = max(res , sum + (k-i-1) * maxElement);
+	}
+
+	cout << res << endl;
+	return;
+
+}
 
 
-	int t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		
-		int n, k;
-		cin >> n >> k;
-
-		vector<int> a(n);
-		vector<int> b(n);
-
-		for(auto &x: a){
-			cin >> x;
-		}
-
-		for(auto &x: b){
-			cin >> x;
-		}
-
-		int res = 0, sum = 0, mx = 0;
-
-        for (int i = 0; i < min(n, k); ++i) {
-            sum += a[i];
-            mx = max(mx, b[i]);
-            res = max(res, sum + mx * (k - i - 1));
-        }
-
-        cout << res << endl;
+		solve();		
 	}
-
 
 	return 0;
 }
