@@ -10,31 +10,49 @@ void solve() {
 	int n, k;
 	cin >> n >> k;
 
-	vector<int> a(n);
-	for(int i=0;i<n; i++){
-		cin >> a[i];
+	int maxVal = 0;
+
+	vector<int> v(n);
+	for(int i=0; i<n; i++){
+		int a;
+		cin >> a;
+		v[i] = a%k;
+
+		maxVal = max(maxVal, v[i]);
 	}
 
-	int res = k;
+	int cnt2 = 0, cnt3 = 0;
 	for(int i=0; i<n; i++){
-		res = min(res, (k - a[i] % k) % k);
+		if(v[i] == 0){
+			cout << 0 << endl;
+			return;
+		}
+		else if(v[i] == 2){
+			cnt2++;
+		}
+		else if(v[i] == 3){
+			cnt3++;
+		}
 	}
 
 	if(k == 4){
-		int evenNum = 0;
-		for(int i=0; i<n; i++){
-			if(a[i]%2 == 0){
-				evenNum++;
-			}
+		if(cnt2 == 0){
+			int z = (cnt3 > 0)? 1 : 2;
+			cout << z << endl;
 		}
-		if(evenNum >= 2){
-			res = 0;
+		else if(cnt2 == 1){
+			cout << 1 << endl;
 		}
-		else if (evenNum == 1) res = min (res, 1ll);
-		else res = min (res, 2ll);
+		else{
+			cout << 0 << endl;
+		}
+
+		return;
 	}
-	cout << res << endl;
-	return;
+	else {
+		cout << k - maxVal << endl;
+		return;
+	}
 }
 
 

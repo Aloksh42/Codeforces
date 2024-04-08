@@ -10,33 +10,28 @@ void solve() {
 	int n;
 	cin >> n;
 
-	string s;
-	cin >> s;
+	int res = 2;
 
-	int count = 0, res = 0, f = 0;
-
+	vector<int> a(n);
+	
 	for(int i=0; i<n; i++){
-		if(s[i] == '.'){
-			res++;
-			count++;
-		}
-		else{
-			count = 0;
-		}
-
-		if(count == 3){
-			f = 1;
-		}
+		cin >> a[i];
 	}
 
-	if(f){
-		cout << 2 << endl;
-		return;
+	while(true){
+		set<int> s;
+
+		for(int i=0; i<n; i++){
+			s.insert(a[i]%res);
+		}
+
+		if(s.size() == 2){
+			cout << res << endl;
+			return;
+		}
+
+		res *= 2;
 	}
-	else{
-		cout << res << endl;
-	}
-	return;
 }
 
 

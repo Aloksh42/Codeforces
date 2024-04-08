@@ -7,35 +7,31 @@ using namespace std;
 
 void solve() {
 	
-	int n;
-	cin >> n;
+	int n, m, k;
+	cin >> n >> m >> k;
 
-	string s;
-	cin >> s;
+	vector<int> v(n);
+	for(int i=0; i<n; i++){
+		cin >> v[i];
+	}
 
-	int count = 0, res = 0, f = 0;
+	sort(v.begin(), v.end());
+
+	int prev = 0;
+	int res = 0;
 
 	for(int i=0; i<n; i++){
-		if(s[i] == '.'){
-			res++;
-			count++;
-		}
-		else{
-			count = 0;
+		if(k <= 0){
+			break;
 		}
 
-		if(count == 3){
-			f = 1;
-		}
+		res += (v[i] * min(k, m)) + (prev*min(m, k));
+		k -= m;
+
+		prev += m;
 	}
 
-	if(f){
-		cout << 2 << endl;
-		return;
-	}
-	else{
-		cout << res << endl;
-	}
+	cout << res << endl;
 	return;
 }
 

@@ -7,35 +7,32 @@ using namespace std;
 
 void solve() {
 	
-	int n;
-	cin >> n;
+	int n, k;
+	cin >> n >> k;
 
 	string s;
 	cin >> s;
 
-	int count = 0, res = 0, f = 0;
+	map<char, int> m;
 
 	for(int i=0; i<n; i++){
-		if(s[i] == '.'){
-			res++;
-			count++;
-		}
-		else{
-			count = 0;
-		}
+		m[s[i]]++;
+	}
 
-		if(count == 3){
-			f = 1;
+	int cnt = 0;
+
+	for(auto &x:m){
+		if(x.second % 2 != 0){
+			cnt++;
 		}
 	}
 
-	if(f){
-		cout << 2 << endl;
+	if(cnt - k <= 1){
+		cout << "Yes" << endl;
 		return;
 	}
-	else{
-		cout << res << endl;
-	}
+
+	cout << "No" << endl;
 	return;
 }
 

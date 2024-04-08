@@ -10,32 +10,30 @@ void solve() {
 	int n;
 	cin >> n;
 
-	string s;
-	cin >> s;
+	vector<int> v(n);
+	for(int i=0; i<n; i++){
+		cin >> v[i];
+	}
 
-	int count = 0, res = 0, f = 0;
+	int res = 0;
+
+	int low = n+1, high = n+1;
 
 	for(int i=0; i<n; i++){
-		if(s[i] == '.'){
+		if(low > high)
+			swap(low, high);
+
+		if(v[i] <= low)
+			low = v[i];
+		else if(v[i] > high){
 			res++;
-			count++;
+			low = v[i];
 		}
-		else{
-			count = 0;
-		}
-
-		if(count == 3){
-			f = 1;
-		}
+		else
+			high = v[i];
 	}
 
-	if(f){
-		cout << 2 << endl;
-		return;
-	}
-	else{
-		cout << res << endl;
-	}
+	cout << res << endl;
 	return;
 }
 

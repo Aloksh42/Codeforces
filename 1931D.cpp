@@ -2,41 +2,48 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n, x, y;
+	cin >> n >> x >> y;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	vector<int> a(n);
+	for(int i=0; i<n; i++){
+		cin >> a[i];
+	}
+
+	int res = 0;
+
+	map<pair<int, int>, int> mp;
+
+	for(int i=0; i<n; i++){
+		int s = (x-(a[i]%x))%x;
+		int d = a[i]%y;
+
+		if(mp[{s,d}]){
+			res += mp[{s,d}];
+		}
+
+		mp[{a[i]%x, a[i]%y}]++;
+	}
+
+	cout << res << endl;
+	return;
+}
 
 
-	int t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-	
-		int n, x, y;
-		cin >> n >> x >> y;
-
-		vector<int> a(n);
-		for(auto &x: a){
-			cin >> x;
-		}	
-
-
-		ll res = 0;
-		map<pair<int, int>, int> m;
-
-		for(auto &t:a){
-			int xMod = (x - (t % x) ) % x;
-			int yMod = t % y;
-			res += m[{xMod, yMod}];
-			m[{t % x, t % y}]++;
-		}
-
-		cout << res << endl;
+		solve();		
 	}
 
 	return 0;

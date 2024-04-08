@@ -2,57 +2,62 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
-void solve(){
+
+void solve() {
+	
 	int n;
 	cin >> n;
 
-	vector<int> v(n);
-	for(auto &x: v){
+	vector<int> a(n);
+	for(auto &x: a){
 		cin >> x;
 	}
 
-	if(n == 1){
-		cout << "0" << endl;
+	int l = 0, r = 0;
+
+	for(int i=0; i<n; i++){
+		if(a[i] == a[0])
+			l++;
+		else
+			break;
+	}
+
+	for(int i=n-1; i>=0; i--){
+		if(a[i] == a[n-1])
+			r++;
+		else
+			break;
+	}
+
+	if(l == n){
+		cout << 0 << endl;
+		return; 
+	}
+	else if(a[0] == a[n-1]){
+		cout << n - l - r << endl;
+		return;
+	}
+	else{
+		cout << min(n-l, n-r) << endl;
 		return;
 	}
 
-	int l = 0;
-	int r = n - 1;
-
-	while(v[l] == v[0]){
-		l++;
-	}
-
-	while(v[r] == v[n-1]){
-		r--;
-	}
-
-	if(v[0] != v[n-1]){
-		cout << min(n - l, r + 1) << endl;
-		return;
-	}
-
-	cout << max(0, r - l + 1) << endl;
 	return;
-
 }
 
-int main() {
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+int32_t main() {
 
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
 
-	int t;
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		solve();
+		solve();		
 	}
-
 
 	return 0;
 }
