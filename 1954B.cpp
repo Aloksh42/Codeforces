@@ -15,26 +15,32 @@ void solve() {
 		cin >> v[i];
 	}
 
+	unordered_map<int, int> mp;
+
 	for(int i=0; i<n; i++){
-		if(i%2 != 0){
-			v[i] = 0 - v[i];
+		mp[v[i]]++;
+	}
+
+	if(mp.size() == 1){
+		cout << -1 << endl;
+		return;
+	}
+
+	int first = v[0];
+	int count = 0;
+	int res = n;
+
+	for(int i=0; i<n; i++){
+		if(v[i] == first){
+			count++;
+		}
+		else {
+			res = min(res, count);
+			count = 0;
 		}
 	}
 
-	vector<int> pref(n+1, 0);
-	for(int i=1; i<=n; i++){
-		pref[i] = pref[i-1] + v[i-1];
-	}
-
-	sort(pref.begin(), pref.end());
-	for(int i=0; i<pref.size()-1; i++){
-		if(pref[i] == pref[i+1]){
-			cout << "Yes" << endl;
-			return;
-		}
-	}
-
-	cout << "No" << endl;
+	cout << min(res, count) << endl;
 	return;
 }
 

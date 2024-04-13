@@ -10,34 +10,43 @@ void solve() {
 	int n, p;
 	cin >> n >> p;
 
-	vector<pair<int, int>> v(n);
+	vector<int> a(n), b(n);
 
 	for(int i=0; i<n; i++){
-		int x;
-		cin >> x;
-		v[i].second = x;
+		cin >> a[i];
+	}	
+
+	for(int i=0; i<n; i++){
+		cin >> b[i];
 	}
 
+	vector<pair<int, int>> vp;
 	for(int i=0; i<n; i++){
-		int y;
-		cin >> y;
-		v[i].first = y;
+		vp.push_back({b[i], a[i]});
 	}
 
-	sort(v.begin(), v.end());
+	sort(vp.begin(), vp.end());
 
-	int req = n-1;
-	int res = p;
+	int res = 0;
+	res += p;
+	int cnt = n-1;
 
-	for(int i=0; i<n; i++){
-		if(v[i].first <= p){
-			int t = min(req, v[i].second);
-			req = req - t;
-			res += t * v[i].first;
+	for(int i=0; i<vp.size(); i++){
+		if(vp[i].first <= p){
+			res += min(vp[i].second, cnt)*vp[i].first;
+			cnt -= min(vp[i].second, cnt);
+		}
+
+		if(cnt <= 0){
+			break;
 		}
 	}
 
-	cout << res + (req)*(p) << endl;
+	if(cnt > 0){
+		res += cnt*p;
+	}
+
+	cout << res << endl;
 	return;
 }
 

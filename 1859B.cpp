@@ -10,35 +10,36 @@ void solve() {
 	int n;
 	cin >> n;
 
-	vector<int> v;
-	int ans = 0;
-	int mi = 1e18;
+	int minEle = 1e9, sum = 0;
+
+	vector<int> elements;
 
 	for(int i=0; i<n; i++){
-		int x;
-		cin >> x;
+		int m;
+		cin >> m;
 
-		vector<int> v1;
-		for(int i=0; i<x; i++){
-			int y;
-			cin >> y;
+		vector<int> v(m);
+		for(int i=0; i<m;  i++){
+			cin >> v[i];
 
-			v1.push_back(y);
+			minEle = min(minEle, v[i]);
 		}
 
-		sort(v1.begin(), v1.end());
-		mi = min(mi, v1[0]);
-		v.push_back(v1[1]);
+		sort(v.begin(), v.end());
+
+		elements.push_back(v[1]);
 	}
 
-	sort(v.begin(), v.end());
-	ans += mi;
-	for(int i=1; i<v.size(); i++){
-		ans += v[i];
+	sort(elements.begin(), elements.end());
+
+	for(int i=1; i<elements.size(); i++){
+		sum += elements[i];
 	}
 
-	cout << ans << endl;
-
+	sum += minEle;
+	
+	cout << sum << endl;
+	return;
 }
 
 

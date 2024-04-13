@@ -2,62 +2,58 @@
 using namespace std;
 
 #define endl "\n"
-#define ll long long
+#define int long long
 
 
-int main() {
+void solve() {
+	
+	int n;
+	cin >> n;
 
-	ios_base::sync_with_stdio(0);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	int sum = 0;
+
+	vector<pair<int, int>> arr(n);
+	for(int i=0; i<n; i++){
+		cin >> arr[i].first;
+		arr[i].second = i;
+		sum += arr[i].first;
+	}
+
+	sort(arr.begin(), arr.end());
+
+	vector<int> res(n);
+	res[arr[n-1].second] = n-1;
+
+	sum -= arr[n-1].first;
+
+	for(int i=n-2; i>=0; i--){
+		res[arr[i].second] = res[arr[i+1].second];
+
+		if(sum < arr[i+1].first){
+			res[arr[i].second] = i;
+		}
+
+		sum -= arr[i].first;
+	}
+
+	for(int i=0; i<n; i++){
+		cout << res[i] << " ";
+	}
+	cout << endl;
+	return;
+}
 
 
-	ll t;
+int32_t main() {
+
+	ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
+
+	int t = 1;
 	cin >> t;
 
 	while(t--){
-		
-		ll n;
-		cin >> n;
-		ll sum = 0;
-
-		vector<ll> a(n);
-		for(auto &x: a){
-			cin >> x;
-			sum += x;
-		}
-
-		vector<ll> b = a;
-		sort(b.begin(), b.end());
-
-		map<ll, ll> m;
-		ll prev = 0;
-		bool c = false;
-
-		for(ll i=0; i<n; i++){
-			sum = sum - b[n-i-1];
-
-			if(c == true){
-				m[b[n-i-1]] = prev;
-			}
-			else {
-				m[b[n-i-1]] = n - i - 1;
-				prev = n-i-1;
-			}
-
-			if(sum >= b[n-i-1]){
-				c = true;
-			}
-			else
-				c = false;
-		}				
-		for(auto &x : a){
-			cout << m[x] << " ";
-		}
-
-		cout << endl;
+		solve();		
 	}
-
 
 	return 0;
 }
