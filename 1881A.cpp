@@ -7,29 +7,25 @@ using namespace std;
 
 void solve() {
 	
-	int n, k;
-	cin >> n >> k;
+	int n, m;
+	cin >> n >> m;
 
-	vector<pair<int, int>> vp(n);
-	for(int i=0; i<n; i++){
-		int x;
-		cin >> x;
+	string x, s;
+	cin >> x >> s;
 
-		x %= k;
+	int res = 0;
 
-		if(x == 0){
-			x += k;
+	for(int i=0; i<10; i++){
+		if(x.find(s) != string::npos){
+			cout << res << endl;
+			return;
 		}
 
-		vp[i] = {-x, i};
+		x += x;
+		res++;
 	}
 
-	sort(vp.begin(), vp.end());
-	for(auto &pair: vp){
-		cout << pair.second + 1<< " ";
-	}
-
-	cout << endl;
+	cout << -1 << endl;
 	return;
 }
 

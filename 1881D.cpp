@@ -15,28 +15,34 @@ void solve() {
 		cin >> a[i];
 	}
 
-	int res = -1;
+	map<int, int> mp;
 
-	for(int i=1; i<=n; i++){
-		if(n%i == 0){
-			int maxVal = -1e18;
-			int minVal = 1e18;
-
-			for(int j=0; j<n; j+=i){
-				int sum = 0;
-				for(int k=j; k<i+j; ++k){
-					sum += a[k];
-				}
-
-				maxVal = max(maxVal, sum);
-				minVal = min(minVal, sum);
+	for(auto x: a){
+		for(int i=2; i*i<=x; i++){
+			while(x%i == 0){
+				mp[i]++;
+				x/=i;
 			}
-
-			res = max(res, maxVal-minVal);
 		}
-	}	
 
-	cout << res << endl;
+		if(x>1){
+			mp[x]++;
+		}
+	}
+
+	int f = 1;
+	for(auto &pair: mp){
+		if(pair.second%n != 0){
+			f = 0;
+		}
+	}
+
+	if(f){
+		cout << "Yes" << endl;
+	}
+	else {
+		cout << "No" << endl;
+	}
 	return;
 }
 

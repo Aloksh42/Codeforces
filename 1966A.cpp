@@ -10,26 +10,27 @@ void solve() {
 	int n, k;
 	cin >> n >> k;
 
-	vector<pair<int, int>> vp(n);
+	vector<int> v(n);
+	map<int, int> mp;
+
 	for(int i=0; i<n; i++){
-		int x;
-		cin >> x;
+		cin >> v[i];
+		mp[v[i]]++;
+	}
 
-		x %= k;
+	if(n<k){
+		cout << n << endl;
+		return;
+	}
 
-		if(x == 0){
-			x += k;
+	for(auto &pair: mp){
+		if(pair.second >= k){
+			cout << k-1 << endl;
+			return;
 		}
-
-		vp[i] = {-x, i};
 	}
 
-	sort(vp.begin(), vp.end());
-	for(auto &pair: vp){
-		cout << pair.second + 1<< " ";
-	}
-
-	cout << endl;
+	cout << n << endl;
 	return;
 }
 

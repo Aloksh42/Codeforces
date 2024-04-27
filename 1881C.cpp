@@ -10,34 +10,33 @@ void solve() {
 	int n;
 	cin >> n;
 
-	vector<int> a(n);
+	vector<string> s(n);
 	for(int i=0; i<n; i++){
-		cin >> a[i];
+		cin >> s[i];
 	}
 
-	int res = -1;
+	int res = 0;
+	vector<char> v;
 
-	for(int i=1; i<=n; i++){
-		if(n%i == 0){
-			int maxVal = -1e18;
-			int minVal = 1e18;
+	for(int i=0; i<n/2; i++){
+		for(int j=0; j<n/2; j++){
+			v.clear();
 
-			for(int j=0; j<n; j+=i){
-				int sum = 0;
-				for(int k=j; k<i+j; ++k){
-					sum += a[k];
-				}
+			v.push_back(s[i][j]);
+			v.push_back(s[j][n-i-1]);
+			v.push_back(s[n-i-1][n-j-1]);
+			v.push_back(s[n-j-1][i]);
 
-				maxVal = max(maxVal, sum);
-				minVal = min(minVal, sum);
+			sort(v.begin(), v.end());
+			for(auto &x: v){
+				res += v.back()-x;
 			}
-
-			res = max(res, maxVal-minVal);
 		}
-	}	
+	}
 
 	cout << res << endl;
 	return;
+
 }
 
 
